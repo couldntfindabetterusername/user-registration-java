@@ -32,6 +32,18 @@ public class Main {
             System.out.println("Last name is not valid");
         }
 
+        System.out.println("Enter the email: ");
+        String email = scanner.nextLine();
+
+        EmailValidator emailValidator = new EmailValidator();
+        emailValidator.validate(email);
+
+        if (emailValidator.validate(email)) {
+            System.out.println("Email is valid");
+        } else {
+            System.out.println("Email is not valid");
+        }
+
         scanner.close();
     }
 }
