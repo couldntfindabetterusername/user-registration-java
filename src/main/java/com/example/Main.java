@@ -20,6 +20,18 @@ public class Main {
             System.out.println("First name is not valid");
         }
 
+        System.out.println("Enter the last name: ");
+        String lastName = scanner.nextLine();
+
+        LastNameValidator lastNameValidator = new LastNameValidator();
+        lastNameValidator.validate(lastName);
+
+        if (lastNameValidator.validate(lastName)) {
+            System.out.println("Last name is valid");
+        } else {
+            System.out.println("Last name is not valid");
+        }
+
         scanner.close();
     }
 }
