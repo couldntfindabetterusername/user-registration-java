@@ -1,10 +1,9 @@
 package com.example;
 
 import java.util.regex.Pattern;
-import java.util.Scanner;
 
 public class EmailValidator {
-    private String regex = "^[a-zA-Z0-9]+([._%+-]+[a-zA-Z0-9]+)*@[a-zA-Z0-9]+(\\.[a-zA-Z]{2,})*(\\.[a-zA-Z]{2,})$";
+    String regex = "^[a-zA-z0-9]{1,}[\\.+-]?[a-zA-z0-9]+@[a-zA-z0-9]{1,}(\\.[a-zA-z]{2,}){1,2}$";
     private Pattern pattern = Pattern.compile(regex);
 
     public boolean validate(String lastName) {
@@ -13,20 +12,23 @@ public class EmailValidator {
     }
 
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        String[] validEmails = { "abc@yahoo.com", "abc-100@yahoo.com", "abc.100@yahoo.com", "abc111@abc.com",
+                "abc-100@abc.net", "abc.100@abc.com.au", "abc@1.com", "abc@gmail.com.com", "abc+100@gmail.com" };
 
-        System.out.println("Enter the email: ");
-        String email = scanner.nextLine();
+        String[] invalidEmails = { "abc", "abc@.com.my", "abc123@gmail.a", "abc123@.com", "abc123@.com.com",
+                ".abc@abc.com", "abc()*@gmail.com", "abc@%*.com", "abc..2002@gmail.com", "abc.@gmail.com",
+                "abc@abc@gmail.com", "abc@gmail.com.1a", "abc@gmail.com.aa.au" };
 
         EmailValidator emailValidator = new EmailValidator();
-        emailValidator.validate(email);
 
-        if (emailValidator.validate(email)) {
-            System.out.println("Email is valid");
-        } else {
-            System.out.println("Email is not valid");
+        System.out.println("Validating valid emails: ");
+        for (String email : validEmails) {
+            System.out.println(email + " :  " + emailValidator.validate(email));
         }
 
-        scanner.close();
+        System.out.println("Validating invalid emails: ");
+        for (String email : invalidEmails) {
+            System.out.println(email + " :  " + emailValidator.validate(email));
+        }
     }
 }
