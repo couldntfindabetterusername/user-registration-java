@@ -1,34 +1,22 @@
 package com.example;
 
 import java.util.regex.Pattern;
-import java.util.Scanner;
 
 public class FirstNameValidator {
     private String regex = "^[A-Z][a-zA-Z]{2,}$";
     private Pattern pattern = Pattern.compile(regex);
 
-    public FirstNameValidator() {}
-    
-    public boolean validate(String firstName) {
-
-        return pattern.matcher(firstName).matches();
+    public FirstNameValidator() {
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+    public boolean validate(String firstName) throws ValidationException {
 
-        System.out.println("Enter the first name: ");
-        String firstName = scanner.nextLine();
+        boolean isValid = pattern.matcher(firstName).matches();
 
-        FirstNameValidator firstNameValidator = new FirstNameValidator();
-        firstNameValidator.validate(firstName);
+        if (!isValid)
+            throw new ValidationException(ValidationExceptionType.FirstNameException, "Firstname is invalid");
 
-        if (firstNameValidator.validate(firstName)) {
-            System.out.println("First name is valid");
-        } else {
-            System.out.println("First name is not valid");
-        }
-
-        scanner.close();
+        return isValid;
     }
+
 }

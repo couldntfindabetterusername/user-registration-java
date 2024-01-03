@@ -1,6 +1,5 @@
 package com.example;
 
-import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class PasswordValidator {
@@ -10,26 +9,13 @@ public class PasswordValidator {
     public PasswordValidator() {
     }
 
-    public boolean validate(String password) {
+    public boolean validate(String password) throws ValidationException {
+        boolean isValid = pattern.matcher(password).matches();
 
-        return pattern.matcher(password).matches();
+        if (!isValid)
+            throw new ValidationException(ValidationExceptionType.PasswordException, "Password is invalid");
+
+        return isValid;
     }
 
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter the password: ");
-        String password = scanner.nextLine();
-
-        PasswordValidator passwordValidator = new PasswordValidator();
-        passwordValidator.validate(password);
-
-        if (passwordValidator.validate(password)) {
-            System.out.println("Password is valid");
-        } else {
-            System.out.println("Password number is not valid");
-        }
-
-        scanner.close();
-    }
 }
