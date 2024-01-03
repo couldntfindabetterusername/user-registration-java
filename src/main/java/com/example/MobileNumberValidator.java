@@ -7,6 +7,8 @@ public class MobileNumberValidator {
     private String regex = "^\\d{2,3} \\d{10}$";
     private Pattern pattern = Pattern.compile(regex);
 
+    public MobileNumberValidator() {}
+    
     public boolean validate(String mobileNumber) {
 
         return pattern.matcher(mobileNumber).matches();

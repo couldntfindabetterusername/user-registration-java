@@ -4,8 +4,11 @@ import java.util.Scanner;
 import java.util.regex.Pattern;
 
 public class PasswordValidator {
-    private String regex = "^(?=.*[A-Z].*)(?=.*\\d.*)(?=.*[@#$%^&+=!]{1}.*)([a-zA-Z0-9]{8,})$";
+    private String regex = "^(?=.*[A-Z])(?=.*[0-9])(?=[a-zA-Z0-9]*[@#$%^&+=!])(?!.*[@#$%^&+=!].*[@#$%^&+=!]).{8,}$";
     private Pattern pattern = Pattern.compile(regex);
+
+    public PasswordValidator() {
+    }
 
     public boolean validate(String password) {
 

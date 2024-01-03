@@ -6,6 +6,8 @@ public class EmailValidator {
     String regex = "^[a-zA-z0-9]{1,}[\\.+-]?[a-zA-z0-9]+@[a-zA-z0-9]{1,}(\\.[a-zA-z]{2,}){1,2}$";
     private Pattern pattern = Pattern.compile(regex);
 
+    public EmailValidator() {}
+    
     public boolean validate(String lastName) {
 
         return pattern.matcher(lastName).matches();
